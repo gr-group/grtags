@@ -1,0 +1,30 @@
+{
+    "name": "gr-group/grtags",
+    "description": "GR Tags",
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "php": ">=5.6",
+        "illuminate/support": "5.*",
+        "gr-group/grsupport": "^1.0"
+    },
+    "author": {
+        "name": "GR Inc",
+        "email": "contato@geraldorocha.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "GRGroup\\GRTags\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "GRGroup\\GRTags\\GRTagsServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
