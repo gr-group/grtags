@@ -21,8 +21,9 @@ trait TagTrait
      */
     public function executeTag($tag)
     {
+    	$tag = str_alphanumeric($tag);
     	$tag = str_start($tag, '#');
-    	
+
     	$tag = Tag::updateOrCreate([
 			'name' => $tag
 		]);
@@ -65,6 +66,19 @@ trait TagTrait
 		foreach($tags as $tag){
 			$this->executeTag($tag);
 		}
+
+		return $tags;
+	}
+
+	/**
+	 * Get all tags from source
+	 * @return GRGroup\GRTags\Models\Tag
+	 */
+	public function allTags()
+	{
+		$tags = collect($this->tags);
+		$tagsIds = $tags->pluck('tag_id')->all();
+		$tags = Tag::whereIn('id', $tagsIds);
 
 		return $tags;
 	}
