@@ -20,3 +20,20 @@ If you are in L5.5+ you don't need the
 	GRGroup\GRTags\GRTagsServiceProvider::class,
 ]
 ```
+
+after run artisan vendor publish
+
+```
+artisan vendor:publish --provider="GRGroup\GRTags\GRTagsServiceProvider"
+```
+
+migrate tables
+
+```
+artisan migrate
+```
+
+
+## Methods, Helpers and Blade Directives
+
+[Methods](https://github.com/gr-group/grtags/blob/master/src/Traits/TagTrait.php#L17)
