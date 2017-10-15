@@ -1,6 +1,7 @@
 <?php
 namespace GRGroup\GRTags\Traits;
 
+use GRGroup\GRSupport\Facades\Support;
 use GRGroup\GRTags\Models\Tag;
 
 trait TagTrait
@@ -58,11 +59,13 @@ trait TagTrait
 
 	/**
 	 * Add multiple tags at once
-	 * @param array $tags
+	 * @param mixed $tags array|string
 	 * @return array
 	 */
 	public function addTags($tags)
 	{
+		$tags = is_string($tags) ? Support::extractHashtags($tags) : $tags;
+
 		foreach($tags as $tag){
 			$this->executeTag($tag);
 		}
@@ -81,5 +84,31 @@ trait TagTrait
 		$tags = Tag::whereIn('id', $tagsIds);
 
 		return $tags;
+	}
+
+	/**
+	 * Delete all tags from source
+	 * @return void
+	 */
+	public function deleteAllTags()
+	{
+		return $this->tags()
+    		->where('taggable_id', $this->id)
+    		->where('taggable_type', get_class($this))
+    		->delete();
+	}
+
+	/**
+	 * Delete tag by id from source
+	 * @param  integer $id
+	 * @return void
+	 */
+	public function deleteTagById($id)
+	{
+		return $this->tags()
+			->where('tag_id', $id)
+    		->where('taggable_id', $this->id)
+    		->where('taggable_type', get_class($this))
+    		->delete();
 	}
 }
