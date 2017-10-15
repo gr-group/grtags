@@ -1,6 +1,6 @@
 # grinc/grtags
 
-Hashtags package used in projects in Laravel of technology companies of GR Group
+Simple Hashtags package used in projects in Laravel of technology companies of GR Group
 
 # Installation
 
@@ -34,6 +34,51 @@ artisan migrate
 ```
 
 
-## Methods, Helpers and Blade Directives
+## Methods
 
-[Methods](https://github.com/gr-group/grtags/blob/master/src/Traits/TagTrait.php#L17)
+#### Retrieve all tags model polymorph
+
+```
+Model::find(1)->tags;
+Model::find(1)->tags()->get();
+Model::find(1)->tags()->paginate(10);
+```
+
+#### Add tag for source
+
+```
+Model::find(1)->addTag('#tagname');
+```
+
+#### Add multiple tags
+
+```
+Model::find(1)->addTags([
+	'#tag1',
+	'#tag2'
+]);
+```
+
+#### Add multiple tags and detect such tags in a string
+
+```
+Model::find(1)->addTags('#hashtag #first signup test');
+```
+
+#### Get all tags from source
+
+```
+Model::find(1)->allTags()->get();
+Model::find(1)->allTags()->paginate(10);
+```
+
+#### Delete all tags from source
+
+```
+Model::find(1)->deleteAllTags();
+```
+
+#### Delete tag by id from source
+
+```
+Model::find(1)->deleteTagById(10);
