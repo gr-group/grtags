@@ -53,10 +53,7 @@ Model::find(1)->addTag('#tagname');
 #### Add multiple tags
 
 ```
-Model::find(1)->addTags([
-	'#tag1',
-	'#tag2'
-]);
+Model::find(1)->addTags(['#tag1','#tag2']);
 ```
 
 #### Add multiple tags and detect such tags in a string

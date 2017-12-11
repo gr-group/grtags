@@ -21,9 +21,7 @@
         "laravel": {
             "providers": [
                 "GRGroup\\GRTags\\GRTagsServiceProvider"
-            ],
-            "aliases": {
-            }
+            ]
         }
     },
     "minimum-stability": "dev"
